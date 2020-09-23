@@ -57,13 +57,13 @@ public class CommandManager {
                         throw new CommandException(Text.of("The size must be higher than 0 and up to 6!"));
                     }
 
-                    int rowLimit = PlayerUtil.getIntOption(sender, "limit.rows");
+                    int rowLimit = PlayerUtil.getIntOption(user, "limit.rows");
                     rowLimit = rowLimit != -1 ? rowLimit : 2;
                     if (slots > rowLimit) {
                         throw new CommandException(Text.of("You can only create a " + rowLimit + " rows backpack!"));
                     }
 
-                    int packLimit = PlayerUtil.getIntOption(sender, "limit.backpacks");
+                    int packLimit = PlayerUtil.getIntOption(user, "limit.backpacks");
                     packLimit = packLimit != -1 ? packLimit : 2;
                     if (DataManager.getBackpacks(user.getUniqueId()).size() >= packLimit) {
                         throw new CommandException(Text.of("You can only have " + packLimit + " backpacks!"));
