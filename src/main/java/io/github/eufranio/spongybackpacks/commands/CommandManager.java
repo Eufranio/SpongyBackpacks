@@ -29,16 +29,29 @@ public class CommandManager {
 
     public static void registerCommands() {
         CommandSpec create = CommandSpec.builder()
-                .permission("spongybackpacks.command.create")
+                .permission("spongybackpacks.command.create.own")
                 .extendedDescription(Text.of("Creates a new backpack for you. May error",
                         Text.NEW_LINE, "if you have more backpacks than the server limit."))
                 .arguments(
                         GenericArguments.text(Text.of("name"), TextSerializers.FORMATTING_CODE, false),
                         GenericArguments.integer(Text.of("rows")),
-                        GenericArguments.userOrSource(Text.of("user"))
+                        GenericArguments.optional(
+                                GenericArguments.user(Text.of("user"))
+                        )
                 )
                 .executor((sender, ctx) -> {
-                    User user = ctx.<User>getOne("user").get();
+                    User user;
+                    if (ctx.<User>getOne("user").isPresent()) {
+                        if (!sender.hasPermission("spongybackpacks.command.create.others")) {
+                            throw new CommandException(Text.of("You don't have permission to create backpacks for other players!"));
+                        }
+                        user = ctx.<User>getOne("user").get();
+                    } else {
+                        if (!(sender instanceof Player)) {
+                            throw new CommandException(Text.of("When executing command from console you must specify a player!"));
+                        }
+                        user = (User) sender;
+                    }
                     int slots = ctx.<Integer>getOne("rows").get();
                     if (slots < 1 || slots > 6) {
                         throw new CommandException(Text.of("The size must be higher than 0 and up to 6!"));
@@ -58,7 +71,7 @@ public class CommandManager {
 
                     Text name = ctx.<Text>getOne("name").get();
                     if (DataManager.getBackpack(name.toPlain(), user.getUniqueId()) != null) {
-                        throw new CommandException(Text.of("There's already an Backpack with this name!"));
+                        throw new CommandException(Text.of("There's already a Backpack with this name!"));
                     }
 
                     Backpack pack = Backpack.of(name, user.getUniqueId(), slots);
