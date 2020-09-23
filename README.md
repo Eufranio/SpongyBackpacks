@@ -29,5 +29,5 @@ SpongyBackpacks is a simple Sponge plugins that provides backpacks for your play
         
 This plugin also adds the ability for players to open their ender chest by shift right clicking with the ender chest item in hand, if they have the **spongybackpacks.enderchest** permission. Make sure to grant them this permission before using that feature!
 
-If you find any issues, report them to the [plugin's issue tracker](https://github.com/Eufranio/SpongyBackpacks/issues). If you want, you can donate for me trough PayPal, my paypal email is **frani@magitechserver.com**.
+If you find any issues, report them to the [plugin's issue tracker](https://github.com/Eufranio/SpongyBackpacks/issues). If you want, you can donate for me trough PayPal, my paypal email is **eufraniow@gmail.com**.
     
