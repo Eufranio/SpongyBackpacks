@@ -3,9 +3,10 @@ SpongyBackpacks is a simple Sponge plugins that provides backpacks for your play
 
 ## Commands and descriptions
 * /sb create <backpack name> <rows, 1 to 6> [user]: creates a new backpack for you or **user**, if specified.
-    By default, players can only have 2 backpacks, and 2 rows. If you want to change this, just set the option **spongybackpacks.limit.rows/backpacks** to a different value on your permission plugin.
+    By default, players can only have 2 backpacks, and 2 rows. If you want to change this, just set the option **spongybackpacks.limit.backpacks or spongybackpacks.limit.rows respectively** to a different value on your permission plugin.
     Permissions:
-        - spongybackpacks.command.create
+        - spongybackpacks.command.create.own
+        - spongybackpacks.command.create.others
 * /sb open <backpack name> [user]: opens the backpack with this specific name for you or for a player, if specified
     Permissions:
         - spongybackpacks.command.open.own
